@@ -81,6 +81,7 @@ while not won:
         
 
 print("Looks like %s went SICKO MODE!" % winner)
+input("Enter to continue:")
 
 
 
