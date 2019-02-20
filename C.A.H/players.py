@@ -18,8 +18,8 @@ class PLAYER:
         self.is_card_czar = not self.is_card_czar    #makes the player the card czar     
     
     def choose(self):
-        choice = input("Choose a card (number of the card from the top): ")
-        self.chosen_card += (self.cards.pop(int(choice)))
+        choice = int(input("Choose a card (number of the card from the top): "))
+        self.chosen_card += (self.cards.pop(choice))
 
     def give_point(self):
         self.points += 1
