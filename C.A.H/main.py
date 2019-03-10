@@ -34,7 +34,7 @@ while not won:
         black_card = BLACK[random.randint(0,len(BLACK)-1)]
 
         PLAYERS[x].toggle_card_czar()
-        print( "\n----------------\n\n\n%s is the card czar\n\n\n----------------\n" % PLAYERS[x].name)
+        print("\n----------------\n\n\n%s is the card czar\n\n\n----------------\n" % PLAYERS[x].name)
         input("Enter to continue")
         clear()
 
@@ -107,12 +107,3 @@ while not won:
 
 print("Looks like %s went SICKO MODE!" % winner)
 input("Enter to continue")
-
-
-
-
-
-
-
-
-
