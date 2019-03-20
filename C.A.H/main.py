@@ -4,7 +4,7 @@ import random
 import os
 player_picks = []
 won = False
-clear = lambda: os.system('cls')
+clear = lambda: os.system('clear')
 
 
 playerNames = []
