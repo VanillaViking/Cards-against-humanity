@@ -21,3 +21,8 @@ class starting_screen():
                 if event.type == pygame.QUIT:
                     pygame.QUIT
                     quit()
+                if event.type == pygame.MOUSEMOTION:
+                    if cont_button.isOver(pygame.mouse.get_pos()):
+                        cont_button.colour = (200, 200, 200)
+                    else:
+                        cont_button.colour = (255, 255, 255)
