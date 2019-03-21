@@ -11,7 +11,7 @@ class button():
         self.text = arial.render(text, False, (0,0,0))
     def draw_button(self, DISPLAY):
         pygame.draw.rect(DISPLAY, self.colour, (self.pos[0], self.pos[1], self.width, self.length))
-        DISPLAY.blit(self.text, (self.pos[0] + (self.width - (self.text.get_width()/2)), self.pos[1] + (self.length - (self.text.get_height() / 2))))
+        DISPLAY.blit(self.text, (self.pos[0] + ((self.width/2) - (self.text.get_width()/2)), self.pos[1] + ((self.length/2) - (self.text.get_height() / 2))))
     
     def isOver(self, mouse_pos):
             if self.pos[0] < mouse_pos[0] and mouse_pos[0] < (self.pos[0] + self.width):
