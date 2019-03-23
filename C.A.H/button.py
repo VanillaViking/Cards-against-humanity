@@ -8,7 +8,7 @@ class button():
         self.length = length
         self.width = width
         self.pos = pos
-        self.text = arial.render(text, False, (0,0,0))
+        self.text = arial.render(text, True, (0,0,0))
     def draw_button(self, DISPLAY):
         pygame.draw.rect(DISPLAY, self.colour, (self.pos[0], self.pos[1], self.width, self.length))
         DISPLAY.blit(self.text, (self.pos[0] + ((self.width/2) - (self.text.get_width()/2)), self.pos[1] + ((self.length/2) - (self.text.get_height() / 2))))

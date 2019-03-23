@@ -26,3 +26,7 @@ class starting_screen():
                         cont_button.colour = (200, 200, 200)
                     else:
                         cont_button.colour = (255, 255, 255)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if cont_button.isOver(pygame.mouse.get_pos()):
+                        self.buttonPressed = True
+                
