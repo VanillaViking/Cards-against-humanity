@@ -1,7 +1,7 @@
 import pygame
 
 pygame.font.init()
-FONT = pygame.font.Font(None, 32)
+FONT = pygame.font.SysFont('Arial', 32)
 class text_input():
     def __init__(self, DISPLAY,x, y, w, h, text =''):
         self.display = DISPLAY
