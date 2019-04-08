@@ -20,6 +20,19 @@ while True:
                 break
         except ValueError:
                 input("Enter a number, buddy")
+        
+while True:                                     #if want bot player
+        clear()
+        is_bot = input("bot player? (y/n)")
+        if is_bot.lower() == "y":
+                PLAYERS.append(PLAYER("BOT"))
+                break
+        elif is_bot.lower() == "n":
+                break
+        else:
+                continue
+
+clear()
 
 #RAndomly giving each player four cards. Also this could probably go in players.py, something to think about later
 for n in range(len(PLAYERS)):
@@ -31,6 +44,9 @@ x = 0
 
 
 while not won:
+        if x >= len(PLAYERS):
+                x = 0
+                
         black_card = BLACK[random.randint(0,len(BLACK)-1)]
 
         PLAYERS[x].toggle_card_czar()
@@ -39,7 +55,7 @@ while not won:
         clear()
 
         for l in range(len(PLAYERS)):
-                if not PLAYERS[l].is_card_czar:
+                if not PLAYERS[l].is_card_czar and PLAYERS[l].name != "BOT":
                         clear()
                         input("%s's turn \n\n Enter to continue\n" % PLAYERS[l].name)
                         while True:
@@ -56,6 +72,11 @@ while not won:
                                 except IndexError:
                                         clear()
                                         input("You don't have a card corresponding with that number.")
+                
+                if PLAYERS[l].name == "BOT":            #BOT's choice
+                        bot_choice = random.randint(0, len(PLAYERS[l].cards)-1)
+                        PLAYERS[l].chosen_card += PLAYERS[l].cards.pop(bot_choice)
+
 
         for v in range(len(PLAYERS)):
                 if PLAYERS[v].is_card_czar:
@@ -100,14 +121,9 @@ while not won:
 
         PLAYERS[x].toggle_card_czar()   #toggle card czar since their turn is done
         x += 1
-        if x >= len(PLAYERS):
-                x = 0
 
-        
 
 print("Looks like %s went SICKO MODE!" % winner)
-input("Enter to continue")
-
 
 
 
