@@ -2,6 +2,7 @@ from cards import *
 from players import *
 import random
 import os
+import time
 player_picks = []
 won = False
 clear = lambda: os.system('clear')
@@ -77,6 +78,16 @@ while not won:
                         bot_choice = random.randint(0, len(PLAYERS[l].cards)-1)
                         PLAYERS[l].chosen_card += PLAYERS[l].cards.pop(bot_choice)
 
+        for nn in range(len(PLAYERS)):
+                if not PLAYERS[nn].is_card_czar:
+                        player_picks.append(PLAYERS[nn].chosen_card)
+
+        temp =[]
+        for pick in player_picks:
+                temp.append(player_picks.pop(random.randint(0,len(player_picks)-1)))
+        for temp_pick in temp:
+                player_picks.append(temp_pick)
+
 
         for v in range(len(PLAYERS)):
                 if PLAYERS[v].is_card_czar:
@@ -86,16 +97,34 @@ while not won:
                                 
                         while True:
                                 print(black_card, "\n\n")
-                                for i in range(len(PLAYERS)):      #prints each person's chosen card for the judge to choose
-                                        if not PLAYERS[i].is_card_czar:
-                                                print(PLAYERS[i].chosen_card, "\n")
-                                                player_picks.append(PLAYERS[i].chosen_card)
-                                try:        
-                                        winner_card = int(input("choose a card: "))
+                                for n in player_picks:             #print player picks for judging
+                                        print(n)
+                                try:   
+                                        if PLAYERS[v].name != "BOT":     
+                                                winner_card = int(input("choose a card: "))
+                                                clear()
+                                        else:
+                                                input("Enter to continue")
+                                                winner_card = random.randint(1,len(player_picks))                                                
+                                                for n in range(0,3): 
+                                                        clear()    
+                                                        print("BOT is choosing.")
+                                                        time.sleep(0.4)
+                                                        clear()
+                                                        print("BOT is choosing..")
+                                                        time.sleep(0.4)
+                                                        clear()
+                                                        print("BOT is choosing...")
+                                                        time.sleep(0.4)
+                                                        clear()
+                                                        print("BOT is choosing....")
+                                                        time.sleep(0.4)
+                                                        clear()
+                                                print("BOT chose:  %s\n" % player_picks[winner_card-1])
+
                                         for u in range(len(PLAYERS)):
-                                                if not PLAYERS[i].is_card_czar:
+                                                if not PLAYERS[u].is_card_czar:
                                                         if player_picks[winner_card-1] == PLAYERS[u].chosen_card:     #identifies who the chosen card belongs to
-                                                                clear()
                                                                 print("%s got a point!" % PLAYERS[u].name)
                                                                 PLAYERS[u].give_point()
                                                                 input("Enter to continue:")
@@ -124,11 +153,3 @@ while not won:
 
 
 print("Looks like %s went SICKO MODE!" % winner)
-
-
-
-
-
-
-
-
