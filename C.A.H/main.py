@@ -24,14 +24,11 @@ while True:
         
 while True:                                     #if want bot player
         clear()
-        is_bot = input("bot player? (y/n)")
-        if is_bot.lower() == "y":
-                PLAYERS.append(PLAYER("BOT"))
-                break
-        elif is_bot.lower() == "n":
-                break
-        else:
-                continue
+        how_many_bot = int(input("how many bots? "))
+        for n in range(how_many_bot):
+                name = "BOT" + str(n)
+                PLAYERS.append(PLAYER(name))
+        break
 
 clear()
 
@@ -56,7 +53,7 @@ while not won:
         clear()
 
         for l in range(len(PLAYERS)):
-                if not PLAYERS[l].is_card_czar and PLAYERS[l].name != "BOT":
+                if not PLAYERS[l].is_card_czar and "BOT" not in PLAYERS[l].name:
                         clear()
                         input("%s's turn \n\n Enter to continue\n" % PLAYERS[l].name)
                         while True:
@@ -74,7 +71,7 @@ while not won:
                                         clear()
                                         input("You don't have a card corresponding with that number.")
                 
-                if PLAYERS[l].name == "BOT":            #BOT's choice
+                if "BOT" in PLAYERS[l].name:            #BOT's choice
                         bot_choice = random.randint(0, len(PLAYERS[l].cards)-1)
                         PLAYERS[l].chosen_card += PLAYERS[l].cards.pop(bot_choice)
 
@@ -100,7 +97,7 @@ while not won:
                                 for n in player_picks:             #print player picks for judging
                                         print(n)
                                 try:   
-                                        if PLAYERS[v].name != "BOT":     
+                                        if "BOT" not in PLAYERS[v].name:     
                                                 winner_card = int(input("choose a card: "))
                                                 clear()
                                         else:
