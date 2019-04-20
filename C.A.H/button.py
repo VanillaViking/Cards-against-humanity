@@ -3,12 +3,12 @@ pygame.font.init()
 arial = pygame.font.SysFont('Arial', 30)
 
 class button():
-    def __init__(self, colour, width, length, pos, text=''):
+    def __init__(self, colour, width, length, pos, text='', text_col=(0,0,0)):
         self.colour = colour
         self.length = length
         self.width = width
         self.pos = pos
-        self.text = arial.render(text, True, (0,0,0))
+        self.text = arial.render(text, True, text_col)
     def draw_button(self, DISPLAY):
         pygame.draw.rect(DISPLAY, self.colour, (self.pos[0], self.pos[1], self.width, self.length))
         DISPLAY.blit(self.text, (self.pos[0] + ((self.width/2) - (self.text.get_width()/2)), self.pos[1] + ((self.length/2) - (self.text.get_height() / 2))))

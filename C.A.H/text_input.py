@@ -2,6 +2,7 @@ import pygame
 
 pygame.font.init()
 FONT = pygame.font.SysFont('Arial', 32)
+SFONT = pygame.font.SysFont('Arial', 20)
 class text_input():
     def __init__(self, DISPLAY,x, y, w, h, text =''):
         self.display = DISPLAY
@@ -24,6 +25,9 @@ class text_input():
                 if event.key == pygame.K_BACKSPACE:
                     self.text = self.text[:-1]
                 elif event.key == pygame.K_RETURN:
+                    self.active = False
+                    self.colour = (200,200,200)
+                elif event.key == pygame.K_TAB:
                     self.active = False
                     self.colour = (200,200,200)
                 else:
