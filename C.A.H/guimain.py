@@ -2,6 +2,8 @@ import pygame
 from starting_screen import *
 from settings_screen import *
 from card_czar_screen import *
+from whos_turn_screen import *
+from player_choose import *
 from players import *
 from cards import *
 pygame.init()
@@ -11,6 +13,8 @@ DISPLAY = pygame.display.set_mode((1920, 1080))
 starting = starting_screen()
 settings = settings_screen()
 who_czar = card_czar_screen()
+which_player =  player_turn()
+player_choose = player_choose()
 
 #GAME START
 starting.draw(DISPLAY)
@@ -41,7 +45,18 @@ while not won:
     if turn >= len(PLAYERS):
         turn = 0
     PLAYERS[turn].toggle_card_czar()
-    who_czar.draw(DISPLAY, PLAYERS[turn].name)
+    who_czar.draw(DISPLAY, PLAYERS[turn].name)          #show card czar
+
+    black_card = BLACK[random.randint(0,len(BLACK)-1)]      #select random black card
+
+    #show which player's turn
+    for n in range(len(PLAYERS)):
+        if not PLAYERS[n].is_card_czar and "BOT" not in PLAYERS[n].name:
+            which_player.draw(DISPLAY, PLAYERS[n].name)
+            player_choose.draw(DISPLAY, PLAYERS[n].cards, black_card)
+
+
+
 
 
 

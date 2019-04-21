@@ -41,7 +41,8 @@ class settings_screen():
                 plyr_names.activate(event)
                 num_bots.activate(event)
                 if event.type == pygame.QUIT:
-                    self.button_pressed = True
+                    pygame.QUIT
+                    quit()
                 if event.type == pygame.MOUSEMOTION:
                     if submit_btn.isOver(pygame.mouse.get_pos()):
                         submit_btn.colour = (65, 65, 65)
