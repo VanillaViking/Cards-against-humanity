@@ -2,7 +2,7 @@ import pygame
 from starting_screen import *
 from settings_screen import *
 from black_screens import *
-from player_choose import *
+from choose_screens import *
 from players import *
 from cards import *
 pygame.init()
@@ -12,7 +12,7 @@ DISPLAY = pygame.display.set_mode((1920, 1080))
 starting = starting_screen()
 settings = settings_screen()
 black_screens =  black_screens()
-player_choose = player_choose()
+choose_screens = choose_screens()
 
 #GAME START
 starting.draw(DISPLAY)
@@ -53,8 +53,8 @@ while not won:
     for n in range(len(PLAYERS)):
         if not PLAYERS[n].is_card_czar and "BOT" not in PLAYERS[n].name:
             black_screens.draw(DISPLAY, ("%s's turn to choose" % PLAYERS[n].name))             #display player
-            player_choose.draw(DISPLAY, PLAYERS[n].cards, black_card)       #let them pick
-            PLAYERS[n].choose(player_choose.selected_card)
+            choose_screens.player_choose(DISPLAY, PLAYERS[n].cards, black_card)       #let them pick
+            PLAYERS[n].choose(choose_screens.selected_card)
             print(PLAYERS[n].chosen_card)
         
         #BOT CHOICE
@@ -73,11 +73,11 @@ while not won:
         if PLAYERS[n].is_card_czar:
             black_screens.draw(DISPLAY, ("Time for %s to judge..." % PLAYERS[n].name))              #card czar choses winning card
             if "BOT" not in PLAYERS[n].name:
-                player_choose.czar_choose(DISPLAY, black_card, player_picks)
-                winner_card = player_choose.selected_card
+                choose_screens.czar_choose(DISPLAY, black_card, player_picks)
+                winner_card = choose_screens.selected_card
             else:
                 winner_card = player_picks[random.randint(0,len(player_picks) - 1)]
-                
+
 
     #POINT GOES TO...       
     for n in range(len(PLAYERS)):
@@ -97,3 +97,6 @@ while not won:
 
     PLAYERS[turn].toggle_card_czar()
     turn += 1
+
+#WINNER WINNER CHICKEN DINNER
+black_screens.draw(DISPLAY, "%s won the game ...Tryhard." % winner)
