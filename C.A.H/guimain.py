@@ -76,7 +76,8 @@ while not won:
                 player_choose.czar_choose(DISPLAY, black_card, player_picks)
                 winner_card = player_choose.selected_card
             else:
-                pass
+                winner_card = player_picks[random.randint(0,len(player_picks) - 1)]
+                
 
     #POINT GOES TO...       
     for n in range(len(PLAYERS)):
