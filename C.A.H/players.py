@@ -17,8 +17,7 @@ class PLAYER:
     def toggle_card_czar(self):
         self.is_card_czar = not self.is_card_czar    #makes the player the card czar     
     
-    def choose(self):
-        choice = int(input("Choose a card (number of the card from the top): "))
+    def choose(self, choice):
         self.chosen_card += (self.cards.pop(choice))
 
     def give_point(self):

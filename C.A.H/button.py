@@ -12,6 +12,7 @@ class button():
         self.pos = pos
         self.wrapping =False
         self.center = center
+        self.plain_text = text
         if wrapping:
             self.text = []
             wrapped = textwrap.wrap(text, wrapping)
